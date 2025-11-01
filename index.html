@@ -789,17 +789,18 @@
             const formattedCheckin = formatDate(checkin);
             const formattedCheckout = formatDate(checkout);
 
+            let l = `https://sbsite.pro//${currentAddress}_1?datein=${formattedCheckin}&s=${surcharge}&dateout=${formattedCheckout}`;
+            if (code && code !== 'Ключницы нет') {
+                l += `&code=${code}`;
+            }
+
             let link = `Добрый день, это Ма-Трешка, отдел заселения. У Вас забронировано проживание с ${formattedCheckin} до ${formattedCheckout}. 
 
 Инструкция по заселению , правила проживания и прочие детали автоматически придут Вам в нашем телеграмм-боте. Если будут какие-либо вопросы / пожелания , пишите прямо сюда!
 
-Запуск телеграмм-бота по ссылке: https://sbsite.pro//${currentAddress}_1?datein=${formattedCheckin}&s=${surcharge}&dateout=${formattedCheckout}
+Запуск телеграмм-бота по ссылке: ${l}
 
 Благодарим Вас за выбор Ма-Трёшки и желаем Вам хорошего проживания!`;
-
-            if (code && code !== 'Ключницы нет') {
-                link += `&code=${code}`;
-            }
 
             document.getElementById('generatedLink').value = link;
         }
